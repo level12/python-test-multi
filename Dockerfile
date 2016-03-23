@@ -1,11 +1,16 @@
+MAINTAINER devteam@level12.io
 FROM ubuntu:14.04
 
-ENV TOX_VERSION=2.3.1
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 ## A directory to dump TOX and coverage information
 VOLUME /opt/artifacts
 VOLUME /opt/src
 
+ENV TOX_VERSION=2.3.1
 
 # The pypy installation is messing with CPython setup, so at this point it is
 # commented out. The installation works but it "clobbers" the pip2.7 binary
