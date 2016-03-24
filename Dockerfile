@@ -1,5 +1,5 @@
-MAINTAINER devteam@level12.io
 FROM ubuntu:14.04
+MAINTAINER devteam@level12.io
 
 RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
