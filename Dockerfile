@@ -6,9 +6,12 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-## A directory to dump TOX and coverage information
-VOLUME /opt/artifacts
+# map to the source code of the app
 VOLUME /opt/src
+# map to the CI artificates directory
+VOLUME /opt/src/.ci/artifacts
+# map to the CI test reports directory
+VOLUME /opt/src/.ci/test-reports
 
 ENV TOX_VERSION=2.3.1
 
@@ -39,5 +42,4 @@ RUN pip2.7 install --upgrade --force-reinstall --quiet tox==${TOX_VERSION}
 RUN apt-get install -y libxml2-dev libxslt1-dev
 
 WORKDIR /opt/src
-ENTRYPOINT ["tox"]
-CMD ["--help"]
+ENTRYPOINT ["/bin/bash", "/opt/src/docker-entry"]
