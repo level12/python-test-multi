@@ -35,6 +35,9 @@ RUN    echo 'deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu trusty main' 
 
 RUN pip2.7 install --upgrade --force-reinstall --quiet tox==${TOX_VERSION}
 
+# need these libraries for lxml & PyQuery
+RUN apt-get install -y libxml2-dev libxslt1-dev
+
 WORKDIR /opt/src
 ENTRYPOINT ["tox"]
 CMD ["--help"]
