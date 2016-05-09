@@ -40,9 +40,11 @@ RUN pip2.7 install --upgrade --force-reinstall --quiet tox==${TOX_VERSION}
 
 # need these libraries for lxml & PyQuery
 RUN apt-get install -y \
+    libfreetype6
+    libjpeg-turbo8 \
+    libpq5 \
     libxml2-dev \
     libxslt1-dev \
-    libpq5
 
 WORKDIR /opt/src
 ENTRYPOINT ["/bin/bash", "/opt/src/docker-entry"]
