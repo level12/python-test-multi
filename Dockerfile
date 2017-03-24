@@ -32,7 +32,8 @@ RUN apt-get install -y \
     libxslt1.1 \
     libffi6 \
     libcairo2 \
-    libpango1.0
+    libpango1.0 \
+    libtiff5
 
 WORKDIR /opt/src
 ENTRYPOINT ["/bin/bash", "/opt/src/docker-entry"]
