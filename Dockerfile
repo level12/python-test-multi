@@ -13,6 +13,10 @@ VOLUME /opt/src/.ci/artifacts
 # map to the CI test reports directory
 VOLUME /opt/src/.ci/test-reports
 
+# The container doesn't always find DNS correctly, lets just set it manually
+RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf
+
+# Setup and install python/pip
 RUN    echo 'deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu trusty main' >> /etc/apt/sources.list.d/python.list \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DB82666C \
     && apt-get update -q \
