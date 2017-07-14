@@ -5,7 +5,7 @@ Testing Python apps with tox and python versions has never been so easy!
 ## Quick Start
 
 ```sh
-$ docker run --volume=/path/to/source:/opt/src level12/python-test-multi -e py27,py33,py34,py35,pypy
+$ docker run --volume=/path/to/source:/opt/src level12/python-test-multi -e py27,py33,py34,py35,py36,pypy
 ```
 
 ## Installed Python Versions
@@ -13,6 +13,7 @@ $ docker run --volume=/path/to/source:/opt/src level12/python-test-multi -e py27
     - 3.3.6
     - 3.4.3
     - 3.5.1
+    - 3.6.1
     - pypy 2.2.1 (2.7.3)
 
 ## Entrypoint

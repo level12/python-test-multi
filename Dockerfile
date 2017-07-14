@@ -16,11 +16,12 @@ VOLUME /opt/src/.ci/test-reports
 RUN    echo 'deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu trusty main' >> /etc/apt/sources.list.d/python.list \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DB82666C \
     && apt-get update -q \
-    && apt-get install -y curl git python3.5 python2.7 libpython2.7 libpython3.5 \
+    && apt-get install -y curl git python3.6 python3.5 python2.7 libpython2.7 libpython3.6 libpython3.5 \
     && curl -fSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py \
     && python2.7 get-pip.py \
     && python3.4 get-pip.py \
     && python3.5 get-pip.py \
+    && python3.6 get-pip.py \
     && rm get-pip.py
 
 # need these libraries for lxml & PyQuery
