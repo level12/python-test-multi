@@ -37,12 +37,5 @@ RUN apt-get update && apt-get install -y \
     libtiff5 \
     && rm -rf /var/lib/apt/lists/*
 
-# Git LFS support since that is how new projects will handle wheels
-RUN curl -fSL "https://github.com/git-lfs/git-lfs/releases/download/v2.2.1/git-lfs-linux-amd64-2.2.1.tar.gz" -o git-lfs.tar.gz \
-    && tar -xzf git-lfs.tar.gz \
-    && ./git-lfs-2.2.1/install.sh \
-    && git lfs install \
-    && rm -r git-lfs*
-
 WORKDIR /opt/src
 ENTRYPOINT ["/bin/bash", "/opt/src/docker-entry"]
