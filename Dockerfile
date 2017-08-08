@@ -25,7 +25,7 @@ RUN    echo 'deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu trusty main' 
     && rm get-pip.py
 
 # need these libraries for lxml & PyQuery
-RUN apt-get update && install -y \
+RUN apt-get update && apt-get install -y \
     libfreetype6 \
     libjpeg-turbo8 \
     libpq5 \
