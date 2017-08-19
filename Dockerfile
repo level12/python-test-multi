@@ -22,7 +22,7 @@ RUN    echo 'deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu trusty main' 
     && python3.4 get-pip.py \
     && python3.5 get-pip.py \
     && python3.6 get-pip.py \
-    && rm get-pip.py
+    && rm get-pip.py \
     && rm -rf /var/lib/apt/lists/*
 
 # need these libraries for lxml & PyQuery
