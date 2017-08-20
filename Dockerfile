@@ -25,7 +25,7 @@ RUN    echo 'deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu trusty main' 
     && rm get-pip.py \
     && rm -rf /var/lib/apt/lists/*
 
-# need these libraries for lxml & PyQuery
+# need these libraries for lxml, PyQuery, and dbus for Keyring
 RUN apt-get update && apt-get install -y \
     libfreetype6 \
     libjpeg-turbo8 \
@@ -36,6 +36,7 @@ RUN apt-get update && apt-get install -y \
     libcairo2 \
     libpango1.0 \
     libtiff5 \
+    libdbus-glib-1-dev \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt/src
