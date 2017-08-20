@@ -13,10 +13,13 @@ VOLUME /opt/src/.ci/artifacts
 # map to the CI test reports directory
 VOLUME /opt/src/.ci/test-reports
 
-RUN    echo 'deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu trusty main' >> /etc/apt/sources.list.d/python.list \
+RUN echo 'deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu trusty main' >> /etc/apt/sources.list.d/python.list \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DB82666C \
     && apt-get update -q \
-    && apt-get install -y curl git python3.6-dev python3.5-dev python2.7-dev \
+    && apt-get install -y curl git \
+        python2.7 python2.7-dev libpython2.7-dev \
+        python3.5 python3.5-dev libpython3.5-dev \
+        python3.6 python3.6-dev libpython3.6-dev \
     && curl -fSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py \
     && python2.7 get-pip.py \
     && python3.4 get-pip.py \
