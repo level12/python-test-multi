@@ -40,4 +40,4 @@ $ docker run -it --entrypoint=/bin/bash level12/python-test-multi
 
 ## Problems
 
-File a bug report at https://github.com/level12/docker-test-python/issues
+File a bug report at https://github.com/level12/python-test-multi/issues
