@@ -42,5 +42,13 @@ RUN apt-get update && apt-get install -y \
     libdbus-glib-1-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# install postgres client for migration testing
+RUN apt-get update && apt-get install -y wget \
+    && echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" >> /etc/apt/sources.list.d/pgdg.list \
+    && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+    && apt-get update \
+    && apt-get install -y postgresql-client-9.6 \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /opt/src
 ENTRYPOINT ["/bin/bash", "/opt/src/docker-entry"]
