@@ -1,7 +1,7 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER devteam@level12.io
 
-RUN locale-gen en_US.UTF-8
+RUN apt-get clean && apt-get update && apt-get install -y locales && locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
@@ -13,11 +13,12 @@ VOLUME /opt/src/.ci/artifacts
 # map to the CI test reports directory
 VOLUME /opt/src/.ci/test-reports
 
-RUN echo 'deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu trusty main' >> /etc/apt/sources.list.d/python.list \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DB82666C \
+RUN echo "deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu xenial main" >> /etc/apt/sources.list.d/python.list \
+    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FF3997E83CD969B409FB24BC5BB92C09DB82666C \
     && apt-get update -q \
     && apt-get install -y curl git \
         python2.7 python2.7-dev libpython2.7-dev \
+        python3.4 python3.4-dev libpython3.4-dev \
         python3.5 python3.5-dev libpython3.5-dev \
         python3.6 python3.6-dev libpython3.6-dev \
     && curl -fSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py \
@@ -29,7 +30,9 @@ RUN echo 'deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu trusty main' >> 
     && rm -rf /var/lib/apt/lists/*
 
 # need these libraries for lxml, PyQuery, and dbus for Keyring
-RUN apt-get update && apt-get install -y \
+# sasl, ldap, ssl for LDAP
+# freetds for pymssql
+RUN apt-get update -q && apt-get install -y \
     libfreetype6 \
     libjpeg-turbo8 \
     libpq5 \
@@ -40,6 +43,11 @@ RUN apt-get update && apt-get install -y \
     libpango1.0 \
     libtiff5 \
     libdbus-glib-1-dev \
+    libsasl2-dev \
+    python-dev \
+    libldap2-dev \
+    libssl-dev \
+    freetds-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # install postgres client for migration testing
