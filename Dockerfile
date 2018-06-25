@@ -58,5 +58,12 @@ RUN apt-get update && apt-get install -y wget \
     && apt-get install -y postgresql-client-9.6 \
     && rm -rf /var/lib/apt/lists/*
 
+# install additional packages for build setup and troubleshooting
+RUN apt-get update && apt-get install -y \
+    iputils-ping \
+    netcat \
+    && rm -rf /var/lib/apt/lists/*
+
+
 WORKDIR /opt/src
 ENTRYPOINT ["/bin/bash", "/opt/src/docker-entry"]
