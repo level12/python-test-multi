@@ -44,6 +44,7 @@ RUN apt-get update -q && apt-get install -y \
     libcairo2 \
     libpango1.0 \
     libtiff5 \
+    libgdk-pixbuf2.0-0 \
     libdbus-glib-1-dev \
     libsasl2-dev \
     python-dev \
