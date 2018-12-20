@@ -65,6 +65,7 @@ RUN apt-get update && apt-get install -y wget \
 RUN apt-get update && apt-get install -y \
     iputils-ping \
     netcat \
+    fio \
     && rm -rf /var/lib/apt/lists/*
 
 
