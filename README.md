@@ -9,33 +9,28 @@ $ docker run --volume=/path/to/source:/opt/src level12/python-test-multi -e py27
 ```
 
 ## Installed Python Versions
-    - 2.7.6
-    - 3.3.6
-    - 3.4.3
-    - 3.5.1
-    - 3.6.1
-    - pypy 2.2.1 (2.7.3)
+    - 2.7.12
+    - 3.4.9
+    - 3.5.2
+    - 3.6.7
+    - 3.7.1
 
 ## Entrypoint
 
-The entrypoint is a python2.7 tox installation. By default the container pins
-the tox version to 2.3.1. You can rebuild the container adjusting the
-`TOX_VERSION` environment variable to suit your needs.
+By default the entrypoint is whatever you mount at `/opt/src/docker-entry`. 
+You must put a file there or else bash will complain that there is no file. 
 
 ## PIP
 
 `pip` is installed for every Python version. The executable is under pip{short
-python version}, for example, `pip2.7` and `pip3.3`. PyPy also has pip
-installed and is accessible from `pippypy`. A `pip` command is not available to
-avoid possible version mismatches. You wont need pip since tox is the entrypoint
-anyway, but it is worth noting.
+python version}, for example, `pip2.7` and `pip3.3`. 
 
 ## Testing the container
 
 You can drop into a shell inside the container with:
 
 ```sh
-$ docker run -it --entrypoint=/bin/bash level12/python-test-multi
+$ docker run --rm -it --entrypoint=/bin/bash level12/python-test-multi
 ```
 
 ## Problems
