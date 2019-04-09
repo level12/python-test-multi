@@ -48,7 +48,15 @@ RUN apt-get update -q && apt-get install -y \
     python-dev \
     libldap2-dev \
     libssl-dev \
-    freetds-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# install Microsoft ODBC driver for pyodbc
+RUN apt-get update -q \
+    && apt-get install -y apt-transport-https ca-certificates \
+    && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+    && curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+    && apt-get update -q \
+    && ACCEPT_EULA=Y apt-get install -y msodbcsql17 \
     && rm -rf /var/lib/apt/lists/*
 
 # install postgres client for migration testing
