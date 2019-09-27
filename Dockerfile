@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 MAINTAINER devteam@level12.io
 
 RUN apt-get clean && apt-get update && apt-get install -y locales && locale-gen en_US.UTF-8
@@ -13,17 +13,14 @@ VOLUME /opt/src/.ci/artifacts
 # map to the CI test reports directory
 VOLUME /opt/src/.ci/test-reports
 
-RUN echo "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu xenial main" >> /etc/apt/sources.list.d/python.list \
+RUN apt install gnupg -y \
+    && echo "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu bionic main" >> /etc/apt/sources.list.d/python.list \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F23C5A6CF475977595C89F51BA6932366A755776 \
     && apt-get update -q \
-    && apt-get install -y curl git mercurial \
-        python2.7 python2.7-dev libpython2.7-dev \
-        python3.5 python3.5-dev libpython3.5-dev \
+    && apt-get install -y curl git  \
         python3.6 python3.6-dev libpython3.6-dev \
         python3.7 python3.7-dev libpython3.7-dev \
     && curl -fSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py \
-    && python2.7 get-pip.py \
-    && python3.5 get-pip.py \
     && python3.6 get-pip.py \
     && python3.7 get-pip.py \
     && rm get-pip.py \
@@ -61,10 +58,10 @@ RUN apt-get update -q \
 
 # install postgres client for migration testing
 RUN apt-get update && apt-get install -y wget \
-    && echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" >> /etc/apt/sources.list.d/pgdg.list \
+    && echo "deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main" >> /etc/apt/sources.list.d/pgdg.list \
     && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
     && apt-get update \
-    && apt-get install -y postgresql-client-9.6 \
+    && apt-get install -y postgresql-client-9.6 postgresql-client-10 postgresql-client-11 \
     && rm -rf /var/lib/apt/lists/*
 
 # install additional packages for build setup and troubleshooting
