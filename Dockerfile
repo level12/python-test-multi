@@ -20,7 +20,7 @@ RUN apt install gnupg -y \
     && apt-get install -y curl git  \
         python3.6 python3.6-dev libpython3.6-dev \
         python3.7 python3.7-dev libpython3.7-dev \
-        python3.8 python3.8-dev libpython3.8-dev python3.8-distutils \
+        python3.8 python3.8-dev libpython3.8-dev python3.8-distutils python3.8-venv \
     && curl -fSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py \
     && python3.6 get-pip.py \
     && python3.7 get-pip.py \
