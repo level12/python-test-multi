@@ -20,6 +20,7 @@ RUN apt install gnupg -y \
     && apt-get install -y curl git  \
         python3.6 python3.6-dev libpython3.6-dev \
         python3.7 python3.7-dev libpython3.7-dev \
+        python3.8 python3.8-dev libpython3.8-dev python3.8-distutils \
     && curl -fSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py \
     && python3.6 get-pip.py \
     && python3.7 get-pip.py \
@@ -35,6 +36,7 @@ RUN apt-get update -q && apt-get install -y \
     libpq5 \
     libxml2 \
     libxslt1.1 \
+    libxslt1-dev \
     libffi6 \
     libcairo2 \
     libpango1.0 \
