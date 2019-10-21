@@ -73,4 +73,5 @@ RUN apt-get update && apt-get install -y \
 
 
 WORKDIR /opt/src
-ENTRYPOINT ["/bin/bash", "/opt/src/docker-entry"]
+CMD ["/opt/src/docker-entry"]
+ENTRYPOINT ["/bin/bash"]
