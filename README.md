@@ -4,7 +4,7 @@ Testing Python apps with tox and python versions has never been so easy!
 
 ## Installed Python Versions
     - 2.7
-    - 3.4-3.7
+    - 3.6-3.8
 
 ## Entrypoint
 
