@@ -72,6 +72,7 @@ RUN apt-get update && apt-get install -y \
     iputils-ping \
     netcat \
     fio \
+    tree \
     && rm -rf /var/lib/apt/lists/*
 
 
