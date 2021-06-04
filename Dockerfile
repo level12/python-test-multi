@@ -1,7 +1,10 @@
 FROM ubuntu:20.04
 LABEL author=devteam@level12.io
 
-RUN apt-get clean && apt-get update && apt-get install -y locales && locale-gen en_US.UTF-8
+RUN apt-get clean \
+    && apt-get update \
+    && apt-get install -y software-properties-common locales \
+    && locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
@@ -15,18 +18,15 @@ VOLUME /opt/src/.ci/artifacts
 VOLUME /opt/src/.ci/test-reports
 
 RUN apt install gnupg -y \
-    && echo "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu bionic main" >> /etc/apt/sources.list.d/python.list \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F23C5A6CF475977595C89F51BA6932366A755776 \
+    && add-apt-repository ppa:deadsnakes/ppa \
     && apt-get update -q \
-    && apt-get install -y curl git  \
-        python3.7 python3.7-dev libpython3.7-dev \
-        python3.8 python3.8-dev libpython3.8-dev python3.8-venv \
-        python3.9 python3.9-dev libpython3.9-dev python3.9-venv \
+    && apt-get install -y curl git libffi-dev libreadline-dev  \
+        python3.7 python3.7-dev libpython3.7 libpython3.7-dev libpython3.7-stdlib \
+        python3.9 python3.9-dev libpython3.9 libpython3.9-dev python3.9-venv \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -fSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py \
     && python3.7 get-pip.py \
-    && python3.8 get-pip.py \
     && python3.9 get-pip.py \
     && rm get-pip.py
 
@@ -39,7 +39,6 @@ RUN apt-get update -q && apt-get install -y \
     libxml2 \
     libxslt1.1 \
     libxslt1-dev \
-    libffi6 \
     libcairo2 \
     libpango1.0 \
     libtiff5 \
@@ -55,15 +54,15 @@ RUN apt-get update -q && apt-get install -y \
 RUN apt-get update -q \
     && apt-get install -y apt-transport-https ca-certificates \
     && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+    && curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list > /etc/apt/sources.list.d/mssql-release.list \
     && apt-get update -q \
     && ACCEPT_EULA=Y apt-get install -y msodbcsql17 \
     && rm -rf /var/lib/apt/lists/*
 
 # install postgres client for migration testing
-RUN apt-get update && apt-get install -y wget \
-    && echo "deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main" >> /etc/apt/sources.list.d/pgdg.list \
-    && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+RUN apt-get update && apt-get install -y \
+    && echo "deb http://apt.postgresql.org/pub/repos/apt/ focal-pgdg main" >> /etc/apt/sources.list.d/pgdg.list \
+    && curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
     && apt-get update \
     && apt-get install -y postgresql-client-11 postgresql-client-12 postgresql-client-13 \
     && rm -rf /var/lib/apt/lists/*
