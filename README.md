@@ -3,7 +3,16 @@
 Testing Python apps with tox and python versions has never been so easy!
 
 ## Installed Python Versions
-    - 3.7-3.9
+
+3.7-3.9
+
+Older OS tags may have less recent versions.
+
+## OS Tags
+
+    - ubuntu1604 (you should upgrade the OS!)
+    - ubuntu1804
+    - latest (Ubuntu 20.04)
 
 ## Entrypoint
 
