@@ -1,10 +1,11 @@
 FROM ubuntu:18.04
-MAINTAINER devteam@level12.io
+LABEL author=devteam@level12.io
 
 RUN apt-get clean && apt-get update && apt-get install -y locales && locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
 
 # map to the source code of the app
 VOLUME /opt/src
@@ -18,19 +19,19 @@ RUN apt install gnupg -y \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F23C5A6CF475977595C89F51BA6932366A755776 \
     && apt-get update -q \
     && apt-get install -y curl git  \
-        python3.6 python3.6-dev libpython3.6-dev \
         python3.7 python3.7-dev libpython3.7-dev \
         python3.8 python3.8-dev libpython3.8-dev python3.8-venv \
-    && curl -fSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py \
-    && python3.6 get-pip.py \
+        python3.9 python3.9-dev libpython3.9-dev python3.9-venv \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -fSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py \
     && python3.7 get-pip.py \
     && python3.8 get-pip.py \
-    && rm get-pip.py \
-    && rm -rf /var/lib/apt/lists/*
+    && python3.9 get-pip.py \
+    && rm get-pip.py
 
 # need these libraries for lxml, PyQuery, and dbus for Keyring
 # sasl, ldap, ssl for LDAP
-# freetds for pymssql
 RUN apt-get update -q && apt-get install -y \
     libfreetype6 \
     libjpeg-turbo8 \
@@ -64,7 +65,7 @@ RUN apt-get update && apt-get install -y wget \
     && echo "deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main" >> /etc/apt/sources.list.d/pgdg.list \
     && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
     && apt-get update \
-    && apt-get install -y postgresql-client-9.6 postgresql-client-10 postgresql-client-11 \
+    && apt-get install -y postgresql-client-11 postgresql-client-12 postgresql-client-13 \
     && rm -rf /var/lib/apt/lists/*
 
 # install additional packages for build setup and troubleshooting

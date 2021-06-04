@@ -3,8 +3,7 @@
 Testing Python apps with tox and python versions has never been so easy!
 
 ## Installed Python Versions
-    - 2.7
-    - 3.6-3.8
+    - 3.7-3.9
 
 ## Entrypoint
 
@@ -14,7 +13,7 @@ You must put a file there or else bash will complain that there is no file.
 ## PIP
 
 `pip` is installed for every Python version. The executable is under pip{short
-python version}, for example, `pip2.7` and `pip3.3`.
+python version}, for example, `pip3.9`.
 
 ## Testing the container
 
