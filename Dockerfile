@@ -48,6 +48,7 @@ RUN apt-get update -q && apt-get install -y \
     python-dev \
     libldap2-dev \
     libssl-dev \
+    make \
     && rm -rf /var/lib/apt/lists/*
 
 # install Microsoft ODBC driver for pyodbc
