@@ -27,6 +27,7 @@ RUN apt install gnupg -y \
 
 RUN curl -fSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py \
     && python3.7 get-pip.py \
+    && python3.8 get-pip.py \
     && python3.9 get-pip.py \
     && rm get-pip.py
 
