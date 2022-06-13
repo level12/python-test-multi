@@ -23,12 +23,14 @@ RUN apt install gnupg -y \
     && apt-get install -y curl git libffi-dev libreadline-dev  \
         python3.7 python3.7-dev libpython3.7 libpython3.7-dev libpython3.7-stdlib \
         python3.9 python3.9-dev libpython3.9 libpython3.9-dev python3.9-venv \
+        python3.10 python3.10-dev libpython3.10 libpython3.10-dev python3.10-venv \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -fSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py \
     && python3.7 get-pip.py \
     && python3.8 get-pip.py \
     && python3.9 get-pip.py \
+    && python3.10 get-pip.py \
     && rm get-pip.py
 
 # need these libraries for lxml, PyQuery, and dbus for Keyring
