@@ -21,9 +21,9 @@ RUN apt install gnupg -y \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt-get update -q \
     && apt-get install -y curl git libffi-dev libreadline-dev  \
-        python3.7 python3.7-dev libpython3.7 libpython3.7-dev libpython3.7-stdlib \
-        python3.9 python3.9-dev libpython3.9 libpython3.9-dev python3.9-venv \
-        python3.10 python3.10-dev libpython3.10 libpython3.10-dev python3.10-venv \
+        python3.7 python3.7-dev libpython3.7 libpython3.7-dev libpython3.7-stdlib python3.7-distutils \
+        python3.9 python3.9-dev libpython3.9 libpython3.9-dev python3.9-venv python3.9-distutils\
+        python3.10 python3.10-dev libpython3.10 libpython3.10-dev python3.10-venv python3.10-distutils \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -fSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py \
