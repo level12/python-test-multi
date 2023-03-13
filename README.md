@@ -12,7 +12,8 @@ Older OS tags may have less recent versions.
 
     - ubuntu1604 (you should upgrade the OS!)
     - ubuntu1804
-    - latest (Ubuntu 20.04)
+    - ubuntu2004
+    - latest (Ubuntu 22.04)
 
 ## Entrypoint
 
