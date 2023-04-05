@@ -62,7 +62,7 @@ RUN apt-get update -q \
 
 # install postgres client for migration testing
 RUN apt-get update && apt-get install -y \
-    && echo "deb http://apt.postgresql.org/pub/repos/apt/ focal-pgdg main" >> /etc/apt/sources.list.d/pgdg.list \
+    && echo "deb http://apt.postgresql.org/pub/repos/apt/ jammy-pgdg main" >> /etc/apt/sources.list.d/pgdg.list \
     && curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
     && apt-get update \
     && apt-get install -y postgresql-client-11 postgresql-client-12 postgresql-client-13 \
