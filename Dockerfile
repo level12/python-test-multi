@@ -45,7 +45,7 @@ RUN apt-get update -q && apt-get install -y \
     libgdk-pixbuf2.0-0 \
     libdbus-glib-1-dev \
     libsasl2-dev \
-    python-dev \
+    python3-dev \
     libldap2-dev \
     libssl-dev \
     make \

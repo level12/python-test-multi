@@ -4,7 +4,7 @@ Testing Python apps with tox and python versions has never been so easy!
 
 ## Installed Python Versions
 
-3.7-3.10
+3.9-3.10
 
 Older OS tags may have less recent versions.
 
