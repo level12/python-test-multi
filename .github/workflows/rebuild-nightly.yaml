@@ -1,0 +1,14 @@
+name: Rebuild nightly
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: satak/webrequest-action@master
+      with:
+        url: ${{secrets.DOCKER_REBUILD_URL}}
+        method: POST
