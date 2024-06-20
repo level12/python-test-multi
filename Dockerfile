@@ -20,7 +20,7 @@ VOLUME /opt/src/.ci/test-reports
 RUN apt install gnupg -y \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt-get update -q \
-    && apt-get install -y curl git libffi-dev libreadline-dev  \
+    && apt-get install -y curl gcc git libffi-dev libreadline-dev  \
         python3.9 python3.9-dev libpython3.9 libpython3.9-dev python3.9-venv python3.9-distutils\
         python3.10 python3.10-dev libpython3.10 libpython3.10-dev python3.10-venv python3.10-distutils \
         python3.11 python3.11-dev libpython3.11 libpython3.11-dev python3.11-venv python3.11-distutils \
